@@ -1,6 +1,5 @@
 import { choice } from "@/lib/utils/random"
 import type { GetPopulationBoundsByLevelFunction, GetRandomCityIdByLevelFunction, GetRandomCityIdsByLevelFunction, Level } from "./level.type"
-import { City } from "@/lib/types/city"
 import { shuffle } from "@/lib/utils/random/random.util"
 
 const LEVELS: Level[] = [

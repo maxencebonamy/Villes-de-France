@@ -2,6 +2,7 @@
 	"extends": "@maxencebonamy",
 	"ignorePatterns": [
 		"scripts/**/**.js",
+		"scripts/**/**.ts",
 		"src/lib/components/shadcnui/**/**.ts",
 		"src/lib/components/shadcnui/**/**.tsx",
 		"postcss.config.js",
