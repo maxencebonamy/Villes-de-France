@@ -1,0 +1,2253 @@
+{
+    "version": 8,
+    "id": "dataviz-dark",
+    "name": "Dataviz Dark",
+    "sources": {
+        "maptiler_planet": {
+            "url": "https://api.maptiler.com/tiles/v3/tiles.json?key=eIgS48TpQ70m77qKYrsx",
+            "type": "vector"
+        },
+        "maptiler_attribution": {
+            "attribution": "<a href=\"https://www.maptiler.com/copyright/\" target=\"_blank\">&copy; MapTiler</a> <a href=\"https://www.openstreetmap.org/copyright\" target=\"_blank\">&copy; OpenStreetMap contributors</a>",
+            "type": "vector"
+        }
+    },
+    "layers": [
+        {
+            "id": "Background",
+            "type": "background",
+            "layout": {
+                "visibility": "visible"
+            },
+            "paint": {
+                "background-color": "hsl(0, 0%, 16%)"
+            }
+        },
+        {
+            "id": "Residential",
+            "type": "fill",
+            "source": "maptiler_planet",
+            "source-layer": "landuse",
+            "minzoom": 6,
+            "maxzoom": 14,
+            "layout": {
+                "visibility": "visible"
+            },
+            "paint": {
+                "fill-color": {
+                    "stops": [
+                        [
+                            6,
+                            "hsl(0, 0%, 15%)"
+                        ],
+                        [
+                            13,
+                            "hsl(0, 0%, 14%)"
+                        ]
+                    ]
+                },
+                "fill-opacity": {
+                    "stops": [
+                        [
+                            6,
+                            1
+                        ],
+                        [
+                            13,
+                            0.9
+                        ],
+                        [
+                            14,
+                            0
+                        ]
+                    ]
+                },
+                "fill-antialias": true
+            },
+            "filter": [
+                "==",
+                "class",
+                "residential"
+            ]
+        },
+        {
+            "id": "Landcover",
+            "type": "fill",
+            "source": "maptiler_planet",
+            "source-layer": "landcover",
+            "layout": {
+                "visibility": "visible"
+            },
+            "paint": {
+                "fill-color": "hsl(0, 0%, 16%)",
+                "fill-opacity": {
+                    "stops": [
+                        [
+                            8,
+                            0.2
+                        ],
+                        [
+                            9,
+                            0.25
+                        ],
+                        [
+                            11,
+                            0.35
+                        ]
+                    ]
+                },
+                "fill-antialias": false
+            },
+            "filter": [
+                "in",
+                "class",
+                "wood",
+                "grass"
+            ]
+        },
+        {
+            "id": "Forest",
+            "type": "fill",
+            "source": "maptiler_planet",
+            "source-layer": "globallandcover",
+            "maxzoom": 7,
+            "layout": {
+                "visibility": "visible"
+            },
+            "paint": {
+                "fill-color": "hsla(0, 0%, 16%, 0.15)"
+            },
+            "filter": [
+                "in",
+                "class",
+                "forest",
+                "tree"
+            ]
+        },
+        {
+            "id": "Stadium",
+            "type": "fill",
+            "source": "maptiler_planet",
+            "source-layer": "landuse",
+            "minzoom": 10,
+            "layout": {
+                "visibility": "visible"
+            },
+            "paint": {
+                "fill-color": "hsl(0,0%,18%)",
+                "fill-opacity": {
+                    "stops": [
+                        [
+                            10,
+                            0.25
+                        ],
+                        [
+                            14,
+                            0.55
+                        ]
+                    ]
+                },
+                "fill-antialias": true,
+                "fill-outline-color": "hsl(0,0%,16%)"
+            },
+            "filter": [
+                "in",
+                "class",
+                "stadium",
+                "pitch"
+            ]
+        },
+        {
+            "id": "Cemetery",
+            "type": "fill",
+            "source": "maptiler_planet",
+            "source-layer": "landuse",
+            "minzoom": 10,
+            "layout": {
+                "visibility": "visible"
+            },
+            "paint": {
+                "fill-color": "hsl(0, 0%, 15%)",
+                "fill-opacity": 1,
+                "fill-antialias": true
+            },
+            "filter": [
+                "==",
+                "class",
+                "cemetery"
+            ]
+        },
+        {
+            "id": "River",
+            "type": "line",
+            "source": "maptiler_planet",
+            "source-layer": "waterway",
+            "layout": {
+                "visibility": "visible"
+            },
+            "paint": {
+                "line-color": "hsl(0,0%,8%)",
+                "line-width": [
+                    "interpolate",
+                    [
+                        "linear"
+                    ],
+                    [
+                        "zoom"
+                    ],
+                    8,
+                    0.5,
+                    9,
+                    1,
+                    15,
+                    1.5,
+                    16,
+                    2.5
+                ]
+            }
+        },
+        {
+            "id": "Water shadow",
+            "type": "fill",
+            "source": "maptiler_planet",
+            "source-layer": "water",
+            "layout": {
+                "visibility": "visible"
+            },
+            "paint": {
+                "fill-color": "hsl(0,0%,0%)",
+                "fill-opacity": 1,
+                "fill-antialias": true
+            },
+            "filter": [
+                "all",
+                [
+                    "==",
+                    "$type",
+                    "Polygon"
+                ],
+                [
+                    "!=",
+                    "brunnel",
+                    "tunnel"
+                ]
+            ]
+        },
+        {
+            "id": "Water",
+            "type": "fill",
+            "source": "maptiler_planet",
+            "source-layer": "water",
+            "minzoom": 0,
+            "layout": {
+                "visibility": "visible"
+            },
+            "paint": {
+                "fill-color": "hsl(0,0%,8%)",
+                "fill-opacity": 1,
+                "fill-antialias": true,
+                "fill-translate": {
+                    "stops": [
+                        [
+                            0,
+                            [
+                                0,
+                                2
+                            ]
+                        ],
+                        [
+                            6,
+                            [
+                                0,
+                                3
+                            ]
+                        ],
+                        [
+                            12,
+                            [
+                                0,
+                                2
+                            ]
+                        ],
+                        [
+                            14,
+                            [
+                                0,
+                                0
+                            ]
+                        ]
+                    ]
+                },
+                "fill-translate-anchor": "map"
+            },
+            "filter": [
+                "all",
+                [
+                    "==",
+                    "$type",
+                    "Polygon"
+                ],
+                [
+                    "!=",
+                    "brunnel",
+                    "tunnel"
+                ]
+            ]
+        },
+        {
+            "id": "Aeroway",
+            "type": "line",
+            "source": "maptiler_planet",
+            "source-layer": "aeroway",
+            "minzoom": 12,
+            "layout": {
+                "line-cap": "round",
+                "line-join": "round",
+                "visibility": "visible"
+            },
+            "paint": {
+                "line-color": "hsl(0, 0%, 17%)",
+                "line-width": [
+                    "interpolate",
+                    [
+                        "linear",
+                        1
+                    ],
+                    [
+                        "zoom"
+                    ],
+                    11,
+                    [
+                        "match",
+                        [
+                            "get",
+                            "class"
+                        ],
+                        [
+                            "runway"
+                        ],
+                        3,
+                        0.5
+                    ],
+                    15,
+                    [
+                        "match",
+                        [
+                            "get",
+                            "class"
+                        ],
+                        [
+                            "runway"
+                        ],
+                        15,
+                        6
+                    ],
+                    16,
+                    [
+                        "match",
+                        [
+                            "get",
+                            "class"
+                        ],
+                        [
+                            "runway"
+                        ],
+                        20,
+                        6
+                    ]
+                ]
+            },
+            "metadata": {},
+            "filter": [
+                "all",
+                [
+                    "==",
+                    "$type",
+                    "LineString"
+                ]
+            ]
+        },
+        {
+            "id": "Tunnel outline",
+            "type": "line",
+            "source": "maptiler_planet",
+            "source-layer": "transportation",
+            "minzoom": 11,
+            "layout": {
+                "line-cap": "round",
+                "line-join": "round",
+                "visibility": "visible"
+            },
+            "paint": {
+                "line-color": "hsl(0, 0%, 17%)",
+                "line-width": [
+                    "interpolate",
+                    [
+                        "linear",
+                        2
+                    ],
+                    [
+                        "zoom"
+                    ],
+                    4,
+                    0.5,
+                    7,
+                    0.5,
+                    10,
+                    [
+                        "match",
+                        [
+                            "get",
+                            "class"
+                        ],
+                        [
+                            "motorway"
+                        ],
+                        [
+                            "match",
+                            [
+                                "get",
+                                "ramp"
+                            ],
+                            1,
+                            0,
+                            2.5
+                        ],
+                        [
+                            "trunk",
+                            "primary"
+                        ],
+                        2.4,
+                        0
+                    ],
+                    12,
+                    [
+                        "match",
+                        [
+                            "get",
+                            "class"
+                        ],
+                        [
+                            "motorway"
+                        ],
+                        [
+                            "match",
+                            [
+                                "get",
+                                "ramp"
+                            ],
+                            1,
+                            2,
+                            6
+                        ],
+                        [
+                            "trunk",
+                            "primary"
+                        ],
+                        3,
+                        [
+                            "secondary",
+                            "tertiary"
+                        ],
+                        2,
+                        [
+                            "minor",
+                            "service",
+                            "track"
+                        ],
+                        1,
+                        0.5
+                    ],
+                    14,
+                    [
+                        "match",
+                        [
+                            "get",
+                            "class"
+                        ],
+                        [
+                            "motorway"
+                        ],
+                        [
+                            "match",
+                            [
+                                "get",
+                                "ramp"
+                            ],
+                            1,
+                            5,
+                            8
+                        ],
+                        [
+                            "trunk"
+                        ],
+                        4,
+                        [
+                            "primary"
+                        ],
+                        6,
+                        [
+                            "secondary"
+                        ],
+                        6,
+                        [
+                            "tertiary"
+                        ],
+                        4,
+                        [
+                            "minor",
+                            "service",
+                            "track"
+                        ],
+                        3,
+                        3
+                    ],
+                    16,
+                    [
+                        "match",
+                        [
+                            "get",
+                            "class"
+                        ],
+                        [
+                            "motorway",
+                            "trunk",
+                            "primary"
+                        ],
+                        10,
+                        [
+                            "secondary"
+                        ],
+                        9,
+                        [
+                            "tertiary"
+                        ],
+                        8,
+                        [
+                            "minor",
+                            "service",
+                            "track"
+                        ],
+                        6,
+                        6
+                    ],
+                    20,
+                    [
+                        "match",
+                        [
+                            "get",
+                            "class"
+                        ],
+                        [
+                            "motorway",
+                            "trunk",
+                            "primary"
+                        ],
+                        26,
+                        [
+                            "secondary"
+                        ],
+                        26,
+                        [
+                            "tertiary"
+                        ],
+                        26,
+                        [
+                            "minor",
+                            "service",
+                            "track"
+                        ],
+                        18,
+                        18
+                    ]
+                ]
+            },
+            "filter": [
+                "all",
+                [
+                    "in",
+                    "class",
+                    "motorway",
+                    "trunk",
+                    "primary",
+                    "secondary",
+                    "tertiary",
+                    "minor",
+                    "service"
+                ],
+                [
+                    "==",
+                    "brunnel",
+                    "tunnel"
+                ]
+            ]
+        },
+        {
+            "id": "Tunnel path",
+            "type": "line",
+            "source": "maptiler_planet",
+            "source-layer": "transportation",
+            "minzoom": 15,
+            "layout": {
+                "line-cap": "round",
+                "line-join": "round",
+                "visibility": "visible"
+            },
+            "paint": {
+                "line-color": "hsl(0, 0%, 18%)",
+                "line-width": [
+                    "interpolate",
+                    [
+                        "linear"
+                    ],
+                    [
+                        "zoom"
+                    ],
+                    14,
+                    0.7,
+                    16,
+                    0.8,
+                    18,
+                    1,
+                    22,
+                    2
+                ],
+                "line-opacity": 1,
+                "line-dasharray": [
+                    0.5,
+                    2
+                ]
+            },
+            "filter": [
+                "all",
+                [
+                    "==",
+                    "class",
+                    "path"
+                ],
+                [
+                    "==",
+                    "brunnel",
+                    "tunnel"
+                ]
+            ]
+        },
+        {
+            "id": "Tunnel",
+            "type": "line",
+            "source": "maptiler_planet",
+            "source-layer": "transportation",
+            "minzoom": 11,
+            "layout": {
+                "line-cap": "square",
+                "line-join": "miter",
+                "visibility": "visible"
+            },
+            "paint": {
+                "line-color": "hsl(0, 0%, 19%)",
+                "line-width": [
+                    "interpolate",
+                    [
+                        "linear",
+                        2
+                    ],
+                    [
+                        "zoom"
+                    ],
+                    5,
+                    0.5,
+                    6,
+                    [
+                        "match",
+                        [
+                            "get",
+                            "class"
+                        ],
+                        [
+                            "motorway"
+                        ],
+                        [
+                            "match",
+                            [
+                                "get",
+                                "brunnel"
+                            ],
+                            [
+                                "bridge"
+                            ],
+                            0,
+                            1
+                        ],
+                        [
+                            "trunk",
+                            "primary"
+                        ],
+                        0,
+                        0
+                    ],
+                    10,
+                    [
+                        "match",
+                        [
+                            "get",
+                            "class"
+                        ],
+                        [
+                            "motorway"
+                        ],
+                        [
+                            "match",
+                            [
+                                "get",
+                                "ramp"
+                            ],
+                            1,
+                            0,
+                            2.5
+                        ],
+                        [
+                            "trunk",
+                            "primary"
+                        ],
+                        1.5,
+                        1
+                    ],
+                    12,
+                    [
+                        "match",
+                        [
+                            "get",
+                            "class"
+                        ],
+                        [
+                            "motorway"
+                        ],
+                        [
+                            "match",
+                            [
+                                "get",
+                                "ramp"
+                            ],
+                            1,
+                            1,
+                            4
+                        ],
+                        [
+                            "trunk"
+                        ],
+                        2.5,
+                        [
+                            "primary"
+                        ],
+                        2.5,
+                        [
+                            "secondary",
+                            "tertiary"
+                        ],
+                        1.5,
+                        [
+                            "minor",
+                            "service",
+                            "track"
+                        ],
+                        1,
+                        1
+                    ],
+                    14,
+                    [
+                        "match",
+                        [
+                            "get",
+                            "class"
+                        ],
+                        [
+                            "motorway"
+                        ],
+                        [
+                            "match",
+                            [
+                                "get",
+                                "ramp"
+                            ],
+                            1,
+                            5,
+                            6
+                        ],
+                        [
+                            "trunk"
+                        ],
+                        3,
+                        [
+                            "primary"
+                        ],
+                        5,
+                        [
+                            "secondary"
+                        ],
+                        4,
+                        [
+                            "tertiary"
+                        ],
+                        3,
+                        [
+                            "minor",
+                            "service",
+                            "track"
+                        ],
+                        2,
+                        2
+                    ],
+                    16,
+                    [
+                        "match",
+                        [
+                            "get",
+                            "class"
+                        ],
+                        [
+                            "motorway",
+                            "trunk",
+                            "primary"
+                        ],
+                        8,
+                        [
+                            "secondary"
+                        ],
+                        7,
+                        [
+                            "tertiary"
+                        ],
+                        6,
+                        [
+                            "minor",
+                            "service",
+                            "track"
+                        ],
+                        4,
+                        4
+                    ],
+                    20,
+                    [
+                        "match",
+                        [
+                            "get",
+                            "class"
+                        ],
+                        [
+                            "motorway",
+                            "trunk",
+                            "primary"
+                        ],
+                        24,
+                        [
+                            "secondary"
+                        ],
+                        24,
+                        [
+                            "tertiary"
+                        ],
+                        24,
+                        [
+                            "minor",
+                            "service",
+                            "track"
+                        ],
+                        16,
+                        16
+                    ]
+                ],
+                "line-opacity": 0.5
+            },
+            "filter": [
+                "all",
+                [
+                    "in",
+                    "class",
+                    "motorway",
+                    "trunk",
+                    "primary",
+                    "secondary",
+                    "tertiary",
+                    "minor",
+                    "service"
+                ],
+                [
+                    "==",
+                    "brunnel",
+                    "tunnel"
+                ]
+            ]
+        },
+        {
+            "id": "Railway tunnel",
+            "type": "line",
+            "source": "maptiler_planet",
+            "source-layer": "transportation",
+            "minzoom": 13,
+            "layout": {
+                "line-join": "round",
+                "visibility": "visible"
+            },
+            "paint": {
+                "line-color": "hsl(0, 0%, 16%)",
+                "line-width": {
+                    "base": 1.3,
+                    "stops": [
+                        [
+                            13,
+                            0.5
+                        ],
+                        [
+                            14,
+                            1
+                        ],
+                        [
+                            15,
+                            1
+                        ],
+                        [
+                            16,
+                            3
+                        ],
+                        [
+                            21,
+                            7
+                        ]
+                    ]
+                },
+                "line-opacity": 0.5
+            },
+            "filter": [
+                "all",
+                [
+                    "==",
+                    "class",
+                    "rail"
+                ],
+                [
+                    "==",
+                    "brunnel",
+                    "tunnel"
+                ]
+            ]
+        },
+        {
+            "id": "Railway tunnel dash",
+            "type": "line",
+            "source": "maptiler_planet",
+            "source-layer": "transportation",
+            "minzoom": 15,
+            "layout": {
+                "line-join": "round",
+                "visibility": "visible"
+            },
+            "paint": {
+                "line-color": "hsl(0, 0%, 19%)",
+                "line-width": {
+                    "base": 1.3,
+                    "stops": [
+                        [
+                            15,
+                            0.5
+                        ],
+                        [
+                            16,
+                            1
+                        ],
+                        [
+                            20,
+                            5
+                        ]
+                    ]
+                },
+                "line-dasharray": [
+                    2,
+                    2
+                ]
+            },
+            "filter": [
+                "all",
+                [
+                    "==",
+                    "class",
+                    "rail"
+                ],
+                [
+                    "==",
+                    "brunnel",
+                    "tunnel"
+                ]
+            ]
+        },
+        {
+            "id": "Pier",
+            "type": "fill",
+            "source": "maptiler_planet",
+            "source-layer": "transportation",
+            "layout": {
+                "visibility": "visible"
+            },
+            "paint": {
+                "fill-color": "hsl(0, 0%, 16%)",
+                "fill-antialias": true
+            },
+            "metadata": {},
+            "filter": [
+                "all",
+                [
+                    "==",
+                    "$type",
+                    "Polygon"
+                ],
+                [
+                    "==",
+                    "class",
+                    "pier"
+                ]
+            ]
+        },
+        {
+            "id": "Pier road",
+            "type": "line",
+            "source": "maptiler_planet",
+            "source-layer": "transportation",
+            "layout": {
+                "line-cap": "round",
+                "line-join": "round",
+                "visibility": "visible"
+            },
+            "paint": {
+                "line-color": "hsl(0, 0%, 16%)",
+                "line-width": {
+                    "base": 1.2,
+                    "stops": [
+                        [
+                            15,
+                            1
+                        ],
+                        [
+                            17,
+                            4
+                        ]
+                    ]
+                }
+            },
+            "metadata": {},
+            "filter": [
+                "all",
+                [
+                    "==",
+                    "$type",
+                    "LineString"
+                ],
+                [
+                    "in",
+                    "class",
+                    "pier"
+                ]
+            ]
+        },
+        {
+            "id": "Bridge",
+            "type": "fill",
+            "source": "maptiler_planet",
+            "source-layer": "transportation",
+            "layout": {
+                "visibility": "visible"
+            },
+            "paint": {
+                "fill-color": "hsl(0, 0%, 16%)",
+                "fill-opacity": 0.5,
+                "fill-antialias": true
+            },
+            "metadata": {},
+            "filter": [
+                "all",
+                [
+                    "==",
+                    "$type",
+                    "Polygon"
+                ],
+                [
+                    "in",
+                    "brunnel",
+                    "bridge"
+                ]
+            ]
+        },
+        {
+            "id": "Road network outline",
+            "type": "line",
+            "source": "maptiler_planet",
+            "source-layer": "transportation",
+            "minzoom": 6,
+            "layout": {
+                "line-cap": "butt",
+                "line-join": "round",
+                "visibility": "visible"
+            },
+            "paint": {
+                "line-color": "hsl(0, 0%, 17%)",
+                "line-width": [
+                    "interpolate",
+                    [
+                        "linear",
+                        2
+                    ],
+                    [
+                        "zoom"
+                    ],
+                    4,
+                    0.5,
+                    7,
+                    0.5,
+                    10,
+                    [
+                        "match",
+                        [
+                            "get",
+                            "class"
+                        ],
+                        [
+                            "motorway"
+                        ],
+                        [
+                            "match",
+                            [
+                                "get",
+                                "ramp"
+                            ],
+                            1,
+                            0,
+                            2.5
+                        ],
+                        [
+                            "trunk",
+                            "primary"
+                        ],
+                        2.4,
+                        0
+                    ],
+                    12,
+                    [
+                        "match",
+                        [
+                            "get",
+                            "class"
+                        ],
+                        [
+                            "motorway"
+                        ],
+                        [
+                            "match",
+                            [
+                                "get",
+                                "ramp"
+                            ],
+                            1,
+                            2,
+                            6
+                        ],
+                        [
+                            "trunk",
+                            "primary"
+                        ],
+                        3,
+                        [
+                            "secondary",
+                            "tertiary"
+                        ],
+                        2,
+                        [
+                            "minor",
+                            "service",
+                            "track"
+                        ],
+                        0,
+                        0.5
+                    ],
+                    14,
+                    [
+                        "match",
+                        [
+                            "get",
+                            "class"
+                        ],
+                        [
+                            "motorway"
+                        ],
+                        [
+                            "match",
+                            [
+                                "get",
+                                "ramp"
+                            ],
+                            1,
+                            5,
+                            8
+                        ],
+                        [
+                            "trunk"
+                        ],
+                        4,
+                        [
+                            "primary"
+                        ],
+                        6,
+                        [
+                            "secondary"
+                        ],
+                        6,
+                        [
+                            "tertiary"
+                        ],
+                        4,
+                        [
+                            "minor",
+                            "service",
+                            "track"
+                        ],
+                        3,
+                        3
+                    ],
+                    16,
+                    [
+                        "match",
+                        [
+                            "get",
+                            "class"
+                        ],
+                        [
+                            "motorway",
+                            "trunk",
+                            "primary"
+                        ],
+                        10,
+                        [
+                            "secondary"
+                        ],
+                        9,
+                        [
+                            "tertiary"
+                        ],
+                        8,
+                        [
+                            "minor",
+                            "service",
+                            "track"
+                        ],
+                        6,
+                        6
+                    ],
+                    20,
+                    [
+                        "match",
+                        [
+                            "get",
+                            "class"
+                        ],
+                        [
+                            "motorway",
+                            "trunk",
+                            "primary"
+                        ],
+                        26,
+                        [
+                            "secondary"
+                        ],
+                        26,
+                        [
+                            "tertiary"
+                        ],
+                        26,
+                        [
+                            "minor",
+                            "service",
+                            "track"
+                        ],
+                        18,
+                        18
+                    ]
+                ],
+                "line-opacity": 1
+            },
+            "metadata": {},
+            "filter": [
+                "all",
+                [
+                    "!in",
+                    "brunnel",
+                    "tunnel"
+                ],
+                [
+                    "!in",
+                    "class",
+                    "bridge",
+                    "ferry",
+                    "rail",
+                    "transit",
+                    "pier",
+                    "path",
+                    "aerialway",
+                    "motorway_construction",
+                    "trunk_construction",
+                    "primary_construction",
+                    "secondary_construction",
+                    "tertiary_construction",
+                    "minor_construction",
+                    "service_construction",
+                    "track_construction"
+                ]
+            ]
+        },
+        {
+            "id": "Road network",
+            "type": "line",
+            "source": "maptiler_planet",
+            "source-layer": "transportation",
+            "minzoom": 6,
+            "layout": {
+                "line-cap": "butt",
+                "line-join": "round",
+                "visibility": "visible"
+            },
+            "paint": {
+                "line-color": "hsl(0, 0%, 20%)",
+                "line-width": [
+                    "interpolate",
+                    [
+                        "linear",
+                        2
+                    ],
+                    [
+                        "zoom"
+                    ],
+                    5,
+                    0.5,
+                    6,
+                    [
+                        "match",
+                        [
+                            "get",
+                            "class"
+                        ],
+                        [
+                            "motorway"
+                        ],
+                        [
+                            "match",
+                            [
+                                "get",
+                                "brunnel"
+                            ],
+                            [
+                                "bridge"
+                            ],
+                            0,
+                            1
+                        ],
+                        [
+                            "trunk",
+                            "primary"
+                        ],
+                        0,
+                        0
+                    ],
+                    10,
+                    [
+                        "match",
+                        [
+                            "get",
+                            "class"
+                        ],
+                        [
+                            "motorway"
+                        ],
+                        [
+                            "match",
+                            [
+                                "get",
+                                "ramp"
+                            ],
+                            1,
+                            0,
+                            2.5
+                        ],
+                        [
+                            "trunk",
+                            "primary"
+                        ],
+                        1.5,
+                        1
+                    ],
+                    12,
+                    [
+                        "match",
+                        [
+                            "get",
+                            "class"
+                        ],
+                        [
+                            "motorway"
+                        ],
+                        [
+                            "match",
+                            [
+                                "get",
+                                "ramp"
+                            ],
+                            1,
+                            1,
+                            4
+                        ],
+                        [
+                            "trunk"
+                        ],
+                        2.5,
+                        [
+                            "primary"
+                        ],
+                        2.5,
+                        [
+                            "secondary",
+                            "tertiary"
+                        ],
+                        1.5,
+                        [
+                            "minor",
+                            "service",
+                            "track"
+                        ],
+                        0,
+                        1
+                    ],
+                    14,
+                    [
+                        "match",
+                        [
+                            "get",
+                            "class"
+                        ],
+                        [
+                            "motorway"
+                        ],
+                        [
+                            "match",
+                            [
+                                "get",
+                                "ramp"
+                            ],
+                            1,
+                            5,
+                            6
+                        ],
+                        [
+                            "trunk"
+                        ],
+                        3,
+                        [
+                            "primary"
+                        ],
+                        5,
+                        [
+                            "secondary"
+                        ],
+                        4,
+                        [
+                            "tertiary"
+                        ],
+                        3,
+                        [
+                            "minor",
+                            "service",
+                            "track"
+                        ],
+                        2,
+                        2
+                    ],
+                    16,
+                    [
+                        "match",
+                        [
+                            "get",
+                            "class"
+                        ],
+                        [
+                            "motorway",
+                            "trunk",
+                            "primary"
+                        ],
+                        8,
+                        [
+                            "secondary"
+                        ],
+                        7,
+                        [
+                            "tertiary"
+                        ],
+                        6,
+                        [
+                            "minor",
+                            "service",
+                            "track"
+                        ],
+                        4,
+                        4
+                    ],
+                    20,
+                    [
+                        "match",
+                        [
+                            "get",
+                            "class"
+                        ],
+                        [
+                            "motorway",
+                            "trunk",
+                            "primary"
+                        ],
+                        24,
+                        [
+                            "secondary"
+                        ],
+                        24,
+                        [
+                            "tertiary"
+                        ],
+                        24,
+                        [
+                            "minor",
+                            "service",
+                            "track"
+                        ],
+                        16,
+                        16
+                    ]
+                ]
+            },
+            "metadata": {},
+            "filter": [
+                "all",
+                [
+                    "!=",
+                    "brunnel",
+                    "tunnel"
+                ],
+                [
+                    "!in",
+                    "class",
+                    "ferry",
+                    "rail",
+                    "transit",
+                    "pier",
+                    "bridge",
+                    "path",
+                    "aerialway",
+                    "motorway_construction",
+                    "trunk_construction",
+                    "primary_construction",
+                    "secondary_construction",
+                    "tertiary_construction",
+                    "minor_construction",
+                    "service_construction",
+                    "track_construction"
+                ]
+            ]
+        },
+        {
+            "id": "Path outline",
+            "type": "line",
+            "source": "maptiler_planet",
+            "source-layer": "transportation",
+            "minzoom": 16,
+            "layout": {
+                "line-cap": "round",
+                "line-join": "round",
+                "visibility": "visible"
+            },
+            "paint": {
+                "line-blur": {
+                    "stops": [
+                        [
+                            16,
+                            1
+                        ],
+                        [
+                            22,
+                            2
+                        ]
+                    ]
+                },
+                "line-color": "hsl(0, 0%, 20%)",
+                "line-width": [
+                    "interpolate",
+                    [
+                        "linear"
+                    ],
+                    [
+                        "zoom"
+                    ],
+                    15,
+                    1.5,
+                    16,
+                    2,
+                    18,
+                    6,
+                    22,
+                    12
+                ],
+                "line-opacity": {
+                    "stops": [
+                        [
+                            15,
+                            0
+                        ],
+                        [
+                            22,
+                            0.5
+                        ]
+                    ]
+                }
+            },
+            "filter": [
+                "all",
+                [
+                    "in",
+                    "class",
+                    "path",
+                    "track"
+                ],
+                [
+                    "!has",
+                    "brunnel"
+                ]
+            ]
+        },
+        {
+            "id": "Path",
+            "type": "line",
+            "source": "maptiler_planet",
+            "source-layer": "transportation",
+            "minzoom": 14,
+            "layout": {
+                "line-cap": "round",
+                "line-join": "round",
+                "visibility": "visible"
+            },
+            "paint": {
+                "line-color": "hsl(0, 0%, 16%)",
+                "line-width": [
+                    "interpolate",
+                    [
+                        "linear"
+                    ],
+                    [
+                        "zoom"
+                    ],
+                    14,
+                    0.7,
+                    16,
+                    0.8,
+                    18,
+                    1,
+                    22,
+                    2
+                ],
+                "line-opacity": 1,
+                "line-dasharray": [
+                    0.5,
+                    2
+                ]
+            },
+            "filter": [
+                "all",
+                [
+                    "in",
+                    "class",
+                    "path",
+                    "track"
+                ],
+                [
+                    "!has",
+                    "brunnel"
+                ]
+            ]
+        },
+        {
+            "id": "Railway",
+            "type": "line",
+            "source": "maptiler_planet",
+            "source-layer": "transportation",
+            "minzoom": 10,
+            "layout": {
+                "line-join": "round",
+                "visibility": "visible"
+            },
+            "paint": {
+                "line-color": "hsl(0, 0%, 16%)",
+                "line-width": {
+                    "base": 1.3,
+                    "stops": [
+                        [
+                            13,
+                            0.5
+                        ],
+                        [
+                            14,
+                            1
+                        ],
+                        [
+                            15,
+                            1
+                        ],
+                        [
+                            16,
+                            3
+                        ],
+                        [
+                            21,
+                            7
+                        ]
+                    ]
+                }
+            },
+            "filter": [
+                "all",
+                [
+                    "==",
+                    "class",
+                    "rail"
+                ],
+                [
+                    "!=",
+                    "brunnel",
+                    "tunnel"
+                ]
+            ]
+        },
+        {
+            "id": "Railway dash",
+            "type": "line",
+            "source": "maptiler_planet",
+            "source-layer": "transportation",
+            "minzoom": 15,
+            "layout": {
+                "line-join": "round",
+                "visibility": "visible"
+            },
+            "paint": {
+                "line-color": "hsl(0, 0%, 20%)",
+                "line-width": {
+                    "base": 1.3,
+                    "stops": [
+                        [
+                            15,
+                            0.5
+                        ],
+                        [
+                            16,
+                            1
+                        ],
+                        [
+                            20,
+                            5
+                        ]
+                    ]
+                },
+                "line-dasharray": [
+                    2,
+                    2
+                ]
+            },
+            "filter": [
+                "all",
+                [
+                    "==",
+                    "class",
+                    "rail"
+                ],
+                [
+                    "!=",
+                    "brunnel",
+                    "tunnel"
+                ]
+            ]
+        },
+        {
+            "id": "Building",
+            "type": "fill",
+            "source": "maptiler_planet",
+            "source-layer": "building",
+            "layout": {
+                "visibility": "visible"
+            },
+            "paint": {
+                "fill-color": {
+                    "stops": [
+                        [
+                            13,
+                            "hsl(0,0%,14%)"
+                        ],
+                        [
+                            16,
+                            "hsl(0,0%,13%)"
+                        ]
+                    ]
+                },
+                "fill-antialias": true
+            }
+        },
+        {
+            "id": "Building top",
+            "type": "fill",
+            "source": "maptiler_planet",
+            "source-layer": "building",
+            "layout": {
+                "visibility": "visible"
+            },
+            "paint": {
+                "fill-color": "hsl(0,0%,14%)",
+                "fill-opacity": {
+                    "base": 1,
+                    "stops": [
+                        [
+                            13,
+                            0
+                        ],
+                        [
+                            16,
+                            1
+                        ]
+                    ]
+                },
+                "fill-translate": {
+                    "base": 1,
+                    "stops": [
+                        [
+                            14,
+                            [
+                                0,
+                                0
+                            ]
+                        ],
+                        [
+                            16,
+                            [
+                                -2,
+                                -2
+                            ]
+                        ]
+                    ]
+                },
+                "fill-outline-color": {
+                    "stops": [
+                        [
+                            12,
+                            "hsl(0, 0%, 14%)"
+                        ],
+                        [
+                            14,
+                            "hsl(0, 0%, 14%)"
+                        ],
+                        [
+                            18,
+                            "hsl(0,0%,12%)"
+                        ]
+                    ]
+                }
+            }
+        },
+        {
+            "id": "Other border",
+            "type": "line",
+            "source": "maptiler_planet",
+            "source-layer": "boundary",
+            "minzoom": 5,
+            "maxzoom": 8,
+            "layout": {
+                "visibility": "visible"
+            },
+            "paint": {
+                "line-color": "hsl(2, 0%, 28%)",
+                "line-width": [
+                    "interpolate",
+                    [
+                        "linear",
+                        1
+                    ],
+                    [
+                        "zoom"
+                    ],
+                    3,
+                    [
+                        "case",
+                        [
+                            "<=",
+                            [
+                                "get",
+                                "admin_level"
+                            ],
+                            6
+                        ],
+                        0.5,
+                        0
+                    ],
+                    4,
+                    [
+                        "case",
+                        [
+                            "<=",
+                            [
+                                "get",
+                                "admin_level"
+                            ],
+                            6
+                        ],
+                        0.75,
+                        0
+                    ],
+                    8,
+                    [
+                        "case",
+                        [
+                            "<=",
+                            [
+                                "get",
+                                "admin_level"
+                            ],
+                            6
+                        ],
+                        1.1,
+                        0
+                    ],
+                    12,
+                    [
+                        "case",
+                        [
+                            "<=",
+                            [
+                                "get",
+                                "admin_level"
+                            ],
+                            6
+                        ],
+                        2,
+                        1.5
+                    ],
+                    16,
+                    [
+                        "case",
+                        [
+                            "<=",
+                            [
+                                "get",
+                                "admin_level"
+                            ],
+                            6
+                        ],
+                        3,
+                        2
+                    ]
+                ],
+                "line-opacity": 1
+            },
+            "filter": [
+                "all",
+                [
+                    "in",
+                    "admin_level",
+                    3,
+                    4,
+                    5,
+                    6,
+                    7,
+                    8,
+                    9,
+                    10
+                ],
+                [
+                    "==",
+                    "maritime",
+                    0
+                ]
+            ]
+        },
+        {
+            "id": "Other border dash",
+            "type": "line",
+            "source": "maptiler_planet",
+            "source-layer": "boundary",
+            "minzoom": 8,
+            "layout": {
+                "visibility": "visible"
+            },
+            "paint": {
+                "line-color": "hsl(2, 0%, 28%)",
+                "line-width": [
+                    "interpolate",
+                    [
+                        "linear",
+                        1
+                    ],
+                    [
+                        "zoom"
+                    ],
+                    3,
+                    [
+                        "case",
+                        [
+                            "<=",
+                            [
+                                "get",
+                                "admin_level"
+                            ],
+                            6
+                        ],
+                        0.5,
+                        0
+                    ],
+                    4,
+                    [
+                        "case",
+                        [
+                            "<=",
+                            [
+                                "get",
+                                "admin_level"
+                            ],
+                            6
+                        ],
+                        0.75,
+                        0
+                    ],
+                    8,
+                    [
+                        "case",
+                        [
+                            "<=",
+                            [
+                                "get",
+                                "admin_level"
+                            ],
+                            6
+                        ],
+                        1.25,
+                        0
+                    ],
+                    12,
+                    [
+                        "case",
+                        [
+                            "<=",
+                            [
+                                "get",
+                                "admin_level"
+                            ],
+                            6
+                        ],
+                        2,
+                        1.25
+                    ],
+                    16,
+                    [
+                        "case",
+                        [
+                            "<=",
+                            [
+                                "get",
+                                "admin_level"
+                            ],
+                            6
+                        ],
+                        3,
+                        2
+                    ],
+                    22,
+                    [
+                        "case",
+                        [
+                            "<=",
+                            [
+                                "get",
+                                "admin_level"
+                            ],
+                            6
+                        ],
+                        6,
+                        4
+                    ]
+                ],
+                "line-opacity": 1,
+                "line-dasharray": {
+                    "stops": [
+                        [
+                            8,
+                            [
+                                3,
+                                1
+                            ]
+                        ],
+                        [
+                            12,
+                            [
+                                2,
+                                2,
+                                6,
+                                2
+                            ]
+                        ]
+                    ]
+                }
+            },
+            "filter": [
+                "all",
+                [
+                    "in",
+                    "admin_level",
+                    3,
+                    4,
+                    5,
+                    6,
+                    7,
+                    8,
+                    9,
+                    10
+                ],
+                [
+                    "==",
+                    "maritime",
+                    0
+                ]
+            ]
+        },
+        {
+            "id": "Disputed border",
+            "type": "line",
+            "source": "maptiler_planet",
+            "source-layer": "boundary",
+            "minzoom": 0,
+            "layout": {
+                "line-cap": "round",
+                "line-join": "round",
+                "visibility": "visible"
+            },
+            "paint": {
+                "line-color": "hsl(0, 0%, 30%)",
+                "line-width": [
+                    "interpolate",
+                    [
+                        "linear"
+                    ],
+                    [
+                        "zoom"
+                    ],
+                    1,
+                    0.75,
+                    3,
+                    1,
+                    6,
+                    1.5,
+                    12,
+                    5
+                ],
+                "line-opacity": 1,
+                "line-dasharray": [
+                    2,
+                    3
+                ]
+            },
+            "filter": [
+                "all",
+                [
+                    "==",
+                    "admin_level",
+                    2
+                ],
+                [
+                    "==",
+                    "maritime",
+                    0
+                ],
+                [
+                    "==",
+                    "disputed",
+                    1
+                ]
+            ]
+        },
+        {
+            "id": "Country border",
+            "type": "line",
+            "source": "maptiler_planet",
+            "source-layer": "boundary",
+            "minzoom": 0,
+            "layout": {
+                "line-cap": "round",
+                "line-join": "round",
+                "visibility": "visible"
+            },
+            "paint": {
+                "line-color": [
+                    "interpolate",
+                    [
+                        "linear"
+                    ],
+                    [
+                        "zoom"
+                    ],
+                    4,
+                    "hsl(0, 0%, 30%)",
+                    6,
+                    "hsl(2,0%,29%)"
+                ],
+                "line-width": [
+                    "interpolate",
+                    [
+                        "linear"
+                    ],
+                    [
+                        "zoom"
+                    ],
+                    1,
+                    0.75,
+                    3,
+                    1.5,
+                    7,
+                    2.2,
+                    12,
+                    3.5,
+                    22,
+                    8
+                ],
+                "line-opacity": 1
+            },
+            "filter": [
+                "all",
+                [
+                    "==",
+                    "admin_level",
+                    2
+                ],
+                [
+                    "==",
+                    "maritime",
+                    0
+                ],
+                [
+                    "==",
+                    "disputed",
+                    0
+                ]
+            ]
+        }
+    ],
+    "glyphs": "https://api.maptiler.com/fonts/{fontstack}/{range}.pbf?key=eIgS48TpQ70m77qKYrsx",
+    "sprite": "https://api.maptiler.com/maps/dataviz-dark/sprite",
+    "bearing": 0,
+    "pitch": 0,
+    "center": [
+        0,
+        0
+    ],
+    "zoom": 1
+}

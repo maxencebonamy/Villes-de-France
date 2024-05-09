@@ -1,0 +1,9 @@
+{
+	"index-export": {
+		"prefix": "export",
+		"body": [
+			"export { $2 } from \"./$1\""
+		],
+		"description": "Export function"
+	}
+}

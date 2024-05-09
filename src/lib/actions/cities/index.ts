@@ -1,0 +1,1 @@
+export { getAllCities, getCityById } from "./cities.action"

@@ -1,0 +1,1 @@
+export type GameColor = "red" | "blue"

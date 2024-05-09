@@ -1,0 +1,11 @@
+{
+	"extends": "@maxencebonamy",
+	"ignorePatterns": [
+		"scripts/**/**.js",
+		"src/lib/components/shadcnui/**/**.ts",
+		"src/lib/components/shadcnui/**/**.tsx",
+		"postcss.config.js",
+		"next.config.js",
+		"next-env.d.ts"
+	]
+}
