@@ -39,3 +39,6 @@ next-env.d.ts
 # Package lock
 package-lock.json
 pnpm-lock.yaml
+
+# Temp
+scripts
