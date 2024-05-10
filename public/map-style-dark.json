@@ -2241,7 +2241,7 @@
             ]
         }
     ],
-    "glyphs": "https://api.maptiler.com/fonts/{fontstack}/{range}.pbf?key=eIgS48TpQ70m77qKYrsx",
+    "glyphs": "https://api.maptiler.com/fonts/{fontstack}/{range}.pbf?key=6gFi9tFP58KEBO2WpFkb",
     "sprite": "https://api.maptiler.com/maps/dataviz-dark/sprite",
     "bearing": 0,
     "pitch": 0,
