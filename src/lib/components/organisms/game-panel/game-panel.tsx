@@ -38,7 +38,7 @@ export const GamePanel = ({ game, onValid, onNext }: GamePanelProps): ReactEleme
 
 			<Row className="w-full items-center justify-between gap-16">
 				<p className="text-lg font-light w-1/2">Niveau</p>
-				<Row className="max-sm:w-full items-center gap-2">
+				<Row className="w-full items-center justify-end gap-2">
 					<Image
 						className="size-8" draggable="false"
 						src={`/levels/${game.level}.png`} alt={`Level ${game.level}`}
