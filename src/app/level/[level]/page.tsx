@@ -5,9 +5,8 @@ import type { MapLayerMouseEvent } from "react-map-gl/maplibre"
 import "maplibre-gl/dist/maplibre-gl.css"
 import { useQuery } from "@tanstack/react-query"
 import { getAllCities, getCityById } from "@/lib/actions/cities"
-import { existsLevel, getRandomCityIdsByLevel } from "@/lib/utils/level"
+import { getLevelFromPageProps, getRandomCityIdsByLevel } from "@/lib/utils/level"
 import { getDistanceInKm, getMiddle, getNearestPointInPolygon, isPointInPolygon } from "@/lib/utils/geojson"
-import { notFound } from "next/navigation"
 import { Loader } from "@/lib/components/atoms/loader"
 import { Map } from "@/lib/components/organisms/map"
 import { MapMarker } from "@/lib/components/molecules/map-marker"
@@ -19,14 +18,8 @@ import { MapLabel } from "@/lib/components/molecules/map-label"
 import type { City } from "@/lib/types/city"
 import { EndGameDialog } from "@/lib/components/organisms/end-game-dialog"
 
-const getLevel = (params: { level: string }): number => {
-	const level = parseInt(params.level)
-	if (isNaN(level) || !existsLevel(level)) notFound()
-	return level
-}
-
 export default ({ params }: { params: { level: string } }): ReactElement => {
-	const level = getLevel(params)
+	const level = getLevelFromPageProps(params)
 
 	const [game, setGame] = useState<GameState>({
 		status: "pointing",

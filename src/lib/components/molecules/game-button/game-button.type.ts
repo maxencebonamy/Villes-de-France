@@ -4,4 +4,5 @@ export type GameButtonProps = {
 	children: string
 	link?: string
 	onClick?: () => void
+	variant?: "default" | "outline"
 }

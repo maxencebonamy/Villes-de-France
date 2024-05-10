@@ -1,6 +1,7 @@
 import { choice } from "@/lib/utils/random"
 import type { GetPopulationBoundsByLevelFunction, GetRandomCityIdByLevelFunction, GetRandomCityIdsByLevelFunction, Level } from "./level.type"
 import { shuffle } from "@/lib/utils/random/random.util"
+import notFound from "@/app/not-found"
 
 const LEVELS: Level[] = [
 	{ id: 1, name: "Débutant", min: 100000, max: Number.MAX_SAFE_INTEGER },
@@ -58,4 +59,10 @@ export const getRandomCityIdsByLevel: GetRandomCityIdsByLevelFunction = (level, 
 	}
 
 	return shuffle(filteredCities).slice(0, nbCities).map(city => city.id)
+}
+
+export const getLevelFromPageProps = (params: { level: string }): number => {
+	const level = parseInt(params.level)
+	if (isNaN(level) || !existsLevel(level)) notFound()
+	return level
 }

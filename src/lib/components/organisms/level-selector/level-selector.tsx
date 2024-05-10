@@ -27,9 +27,19 @@ export const LevelSelector = ({ className }: LevelSelectorProps): ReactElement =
 				}
 			</Row>
 
-			<GameButton disabled={currentLevelId === null} link={currentLevelId === null ? undefined : `/level/${currentLevelId}`} >
-				Jouer
-			</GameButton>
+			<Row className="justify-center items-center gap-4">
+				<GameButton
+					variant="outline" disabled={currentLevelId === null} link={currentLevelId === null ? undefined : `/training/${currentLevelId}`}
+				>
+					S'entraîner
+				</GameButton>
+
+				<GameButton
+					disabled={currentLevelId === null} link={currentLevelId === null ? undefined : `/level/${currentLevelId}`}
+				>
+					Jouer
+				</GameButton>
+			</Row>
 		</Column>
 	)
 }

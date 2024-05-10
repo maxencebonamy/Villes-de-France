@@ -26,9 +26,9 @@ export const HomeButton = ({ className }: HomeButtonProps): ReactElement => {
 
 			<AlertDialogContent className="max-sm:w-11/12 max-sm:rounded-lg">
 				<AlertDialogHeader>
-					<AlertDialogTitle>Quitter la partie</AlertDialogTitle>
+					<AlertDialogTitle>Revenir à l'accueil</AlertDialogTitle>
 					<AlertDialogDescription>
-						Vous êtes sur le point de quitter la partie en cours. Êtes-vous sûr de vouloir quitter ?
+						Êtes-vous sûr de vouloir quitter cette page ?
 					</AlertDialogDescription>
 				</AlertDialogHeader>
 				<AlertDialogFooter className="gap-2 flex-row justify-end items-end">

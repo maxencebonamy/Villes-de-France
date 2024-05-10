@@ -4,7 +4,7 @@ import { cn } from "@/lib/utils/style"
 import { Button } from "@/lib/components/shadcnui/ui/button"
 import Link from "next/link"
 
-export const GameButton = ({ children, className, disabled, link, onClick }: GameButtonProps): ReactElement => {
+export const GameButton = ({ children, className, disabled, link, onClick, variant = "default" }: GameButtonProps): ReactElement => {
 	const style = cn(
 		"font-black italic text-xl uppercase",
 		className
@@ -13,7 +13,7 @@ export const GameButton = ({ children, className, disabled, link, onClick }: Gam
 	if (link) {
 		return (
 			<Link href={link}>
-				<Button size="lg" className={style} disabled={disabled} onClick={onClick}>
+				<Button size="lg" className={style} disabled={disabled} onClick={onClick} variant={variant}>
 					{children}
 				</Button>
 			</Link>
@@ -21,7 +21,7 @@ export const GameButton = ({ children, className, disabled, link, onClick }: Gam
 	}
 
 	return (
-		<Button size="lg" className={style} disabled={disabled} onClick={onClick}>
+		<Button size="lg" className={style} disabled={disabled} onClick={onClick} variant={variant}>
 			{children}
 		</Button>
 	)
