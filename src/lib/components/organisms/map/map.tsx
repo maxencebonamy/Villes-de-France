@@ -5,11 +5,9 @@ import type { MapProps } from "."
 import MapLibre from "react-map-gl/maplibre"
 import "maplibre-gl/dist/maplibre-gl.css"
 import { useTheme } from "next-themes"
-import { env } from "@/env"
 
 export const Map = ({ children, style, onClick }: MapProps): ReactElement => {
 	const { theme } = useTheme()
-	const MAPTILER_KEY = env.NEXT_PUBLIC_MAPTILER_API
 
 	return (
 		<MapLibre
@@ -19,7 +17,7 @@ export const Map = ({ children, style, onClick }: MapProps): ReactElement => {
 				zoom: 5.3
 			}}
 			styleDiffing
-			mapStyle={`/map-style${theme === "dark" ? "-dark" : ""}.json?key=${MAPTILER_KEY}`}
+			mapStyle={`/map-style${theme === "dark" ? "-dark" : ""}.json`}
 			minZoom={1}
 			onClick={onClick}
 			cursor="crosshair"
