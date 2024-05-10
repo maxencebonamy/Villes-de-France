@@ -42,9 +42,9 @@ export default ({ params }: { params: { level: string } }): ReactElement => {
 	})
 	const [cityIds, setCityIds] = useState<City["id"][] | null>(null)
 
-	const { refetch: refetchCurrentCity } = useQuery({ queryKey: ["city", game.cityId], queryFn: async() => {
-		if (!game.cityId) return null
-		const city = await getCityById(game.cityId)
+	const { refetch: refetchCurrentCity } = useQuery({ queryKey: ["city", cityIds ? cityIds[game.round - 1] : null], queryFn: async() => {
+		if (!cityIds) return null
+		const city = await getCityById(cityIds[game.round - 1])
 		setGame({ ...game, city })
 		return city
 	} })
@@ -58,10 +58,9 @@ export default ({ params }: { params: { level: string } }): ReactElement => {
 	} })
 
 	useEffect(() => {
-		if (!game.cityId) return
 		setGame({ ...game, city: null, guessPoint: null, nearestPoint: null, distance: null })
 		void refetchCurrentCity()
-	}, [game.cityId])
+	}, [game.round])
 
 	useEffect(() => {
 		if (!cityIds) return
@@ -90,7 +89,6 @@ export default ({ params }: { params: { level: string } }): ReactElement => {
 		setGame(game => ({
 			...game,
 			status: end ? "finished" : "pointing", round: end ? game.round : game.round + 1,
-			cityId: getRandomCityIdByLevel(level, cities),
 			guessPoint: null, nearestPoint: null, distance: null
 		}))
 	}
