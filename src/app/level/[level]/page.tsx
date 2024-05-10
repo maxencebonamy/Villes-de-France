@@ -53,7 +53,6 @@ export default ({ params }: { params: { level: string } }): ReactElement => {
 		const cities = await getAllCities()
 		const result = getRandomCityIdsByLevel(level, game.maxRound, cities)
 		setCityIds(result)
-		console.log(result.sort())
 		return cities
 	} })
 
