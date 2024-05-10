@@ -2,8 +2,6 @@
 	<img src="https://github.com/maxencebonamy/maxencebonamy/blob/main/assets/Villes_de_France.png" width="100%" alt="Sand Box">
 </p>
 
-https://github.com/maxencebonamy/Portfolio/assets/66129931/6ea77903-0a14-4a59-92f1-f76b288b4499
-
 
 <br>
 
