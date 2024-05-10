@@ -4,7 +4,7 @@
     "name": "Dataviz Light",
     "sources": {
         "maptiler_planet": {
-            "url": "https://api.maptiler.com/tiles/v3/tiles.json?key=nPNqbpJ7u7XXMGhjpAbw",
+            "url": "https://api.maptiler.com/tiles/v3/tiles.json?key=6gFi9tFP58KEBO2WpFkb",
             "type": "vector"
         },
         "maptiler_attribution": {
