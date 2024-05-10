@@ -4,7 +4,7 @@
     "name": "Dataviz Dark",
     "sources": {
         "maptiler_planet": {
-            "url": "https://api.maptiler.com/tiles/v3/tiles.json?key=eIgS48TpQ70m77qKYrsx",
+            "url": "https://api.maptiler.com/tiles/v3/tiles.json?key=nPNqbpJ7u7XXMGhjpAbw",
             "type": "vector"
         },
         "maptiler_attribution": {
