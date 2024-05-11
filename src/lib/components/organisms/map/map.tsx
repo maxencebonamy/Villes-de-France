@@ -22,6 +22,9 @@ export const Map = ({ children, style, onClick }: MapProps): ReactElement => {
 			onClick={onClick}
 			cursor="crosshair"
 			style={style}
+			doubleClickZoom={false}
+			dragRotate={false}
+			touchZoomRotate={false}
 		>
 			{Array.isArray(children) ? children.filter(Boolean) : children}
 		</MapLibre>

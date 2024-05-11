@@ -61,32 +61,6 @@ export const GamePanel = ({ game, onValid, onNext }: GamePanelProps): ReactEleme
 				</Row>
 			</Column>
 
-			{/* {reduced ? <></> : (<>
-				<Row className="w-full items-center justify-between gap-16">
-					<p className="text-lg font-light w-1/2">Score</p>
-					<p className="text-lg font-semibold">{game.score}</p>
-				</Row>
-
-				<Row className="w-full items-center justify-between gap-16">
-					<p className="text-lg font-light w-1/2">Progression</p>
-					<p className="text-lg font-semibold">{game.round} / {game.maxRound}</p>
-				</Row>
-
-				<Row className="w-full items-center justify-between gap-16">
-					<p className="text-lg font-light w-1/2">Niveau</p>
-					<Row className="w-full items-center justify-end gap-2">
-						<Image
-							className="size-8" draggable="false"
-							src={`/levels/${game.level}.png`} alt={`Level ${game.level}`}
-							width={200} height={200}
-						/>
-						<p className="text-lg font-semibold">
-							{getLevelById(game.level).name}
-						</p>
-					</Row>
-				</Row>
-			</>)} */}
-
 			<Row className="w-full items-center justify-end gap-4">
 				{game.status === "pointing" ? (
 					<GameButton onClick={onValid}>Valider</GameButton>

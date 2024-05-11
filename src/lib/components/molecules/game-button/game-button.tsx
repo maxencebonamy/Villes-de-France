@@ -13,7 +13,7 @@ export const GameButton = ({ children, className, disabled, link, onClick, varia
 	if (link) {
 		return (
 			<Link href={link}>
-				<Button size="lg" className={style} disabled={disabled} onClick={onClick} variant={variant}>
+				<Button size="lg" className={cn(style, "w-full")} disabled={disabled} onClick={onClick} variant={variant}>
 					{children}
 				</Button>
 			</Link>
