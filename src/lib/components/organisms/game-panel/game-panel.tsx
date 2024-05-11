@@ -1,4 +1,4 @@
-import type { ReactElement } from "react"
+import { useState, type ReactElement } from "react"
 import type { GamePanelProps } from "."
 import { Column } from "@/lib/components/atoms/column"
 import { cn } from "@/lib/utils/style"
@@ -8,6 +8,8 @@ import { getLevelById } from "@/lib/utils/level"
 import Image from "next/image"
 import { GameButton } from "@/lib/components/molecules/game-button"
 import { Subtitle } from "@/lib/components/atoms/subtitle"
+import { Button } from "@/lib/components/shadcnui/ui/button"
+import { ChevronDown } from "lucide-react"
 
 export const GamePanel = ({ game, onValid, onNext }: GamePanelProps): ReactElement => {
 	const style = cn(
@@ -18,37 +20,72 @@ export const GamePanel = ({ game, onValid, onNext }: GamePanelProps): ReactEleme
 		"transition-all"
 	)
 
+	const [reduced, setReduced] = useState(false)
+
 	return (
 		<Column className={style}>
-			{game.city ? (
-				<Subtitle>
-					{game.city.name}
-				</Subtitle>
-			) : <Loader />}
-
 			<Row className="w-full items-center justify-between gap-16">
-				<p className="text-lg font-light w-1/2">Score</p>
-				<p className="text-lg font-semibold">{game.score}</p>
+				{game.city ? (
+					<Subtitle>
+						{game.city.name}
+					</Subtitle>
+				) : <Loader />}
+				<Button onClick={() => setReduced(!reduced)} size="icon" variant="outline">
+					<ChevronDown className={cn({ "rotate-180": reduced }, "transition-all")} />
+				</Button>
 			</Row>
 
-			<Row className="w-full items-center justify-between gap-16">
-				<p className="text-lg font-light w-1/2">Progression</p>
-				<p className="text-lg font-semibold">{game.round} / {game.maxRound}</p>
-			</Row>
-
-			<Row className="w-full items-center justify-between gap-16">
-				<p className="text-lg font-light w-1/2">Niveau</p>
-				<Row className="w-full items-center justify-end gap-2">
-					<Image
-						className="size-8" draggable="false"
-						src={`/levels/${game.level}.png`} alt={`Level ${game.level}`}
-						width={200} height={200}
-					/>
-					<p className="text-lg font-semibold">
-						{getLevelById(game.level).name}
-					</p>
+			<Column className={cn("w-full items-center justify-between gap-4 transition-all max-h-36", { "scale-y-0 max-h-0 -my-2": reduced })}>
+				<Row className="w-full items-center justify-between gap-16">
+					<p className="text-lg font-light w-1/2">Score</p>
+					<p className="text-lg font-semibold">{game.score}</p>
 				</Row>
-			</Row>
+
+				<Row className="w-full items-center justify-between gap-16">
+					<p className="text-lg font-light w-1/2">Progression</p>
+					<p className="text-lg font-semibold">{game.round} / {game.maxRound}</p>
+				</Row>
+
+				<Row className="w-full items-center justify-between gap-16">
+					<p className="text-lg font-light w-1/2">Niveau</p>
+					<Row className="w-full items-center justify-end gap-2">
+						<Image
+							className="size-8" draggable="false"
+							src={`/levels/${game.level}.png`} alt={`Level ${game.level}`}
+							width={200} height={200}
+						/>
+						<p className="text-lg font-semibold">
+							{getLevelById(game.level).name}
+						</p>
+					</Row>
+				</Row>
+			</Column>
+
+			{/* {reduced ? <></> : (<>
+				<Row className="w-full items-center justify-between gap-16">
+					<p className="text-lg font-light w-1/2">Score</p>
+					<p className="text-lg font-semibold">{game.score}</p>
+				</Row>
+
+				<Row className="w-full items-center justify-between gap-16">
+					<p className="text-lg font-light w-1/2">Progression</p>
+					<p className="text-lg font-semibold">{game.round} / {game.maxRound}</p>
+				</Row>
+
+				<Row className="w-full items-center justify-between gap-16">
+					<p className="text-lg font-light w-1/2">Niveau</p>
+					<Row className="w-full items-center justify-end gap-2">
+						<Image
+							className="size-8" draggable="false"
+							src={`/levels/${game.level}.png`} alt={`Level ${game.level}`}
+							width={200} height={200}
+						/>
+						<p className="text-lg font-semibold">
+							{getLevelById(game.level).name}
+						</p>
+					</Row>
+				</Row>
+			</>)} */}
 
 			<Row className="w-full items-center justify-end gap-4">
 				{game.status === "pointing" ? (
