@@ -26,7 +26,6 @@ export const Map = ({ children, style, onClick }: MapProps): ReactElement => {
 			onRotateEnd={e => e.originalEvent?.preventDefault()}
 			onRotateStart={e => e.originalEvent?.preventDefault()}
 			dragRotate={false}
-			touchZoomRotate={false}
 		>
 			{Array.isArray(children) ? children.filter(Boolean) : children}
 		</MapLibre>
