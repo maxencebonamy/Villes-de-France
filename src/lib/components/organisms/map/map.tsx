@@ -26,6 +26,7 @@ export const Map = ({ children, style, onClick }: MapProps): ReactElement => {
 			dragRotate={false}
 			scrollZoom={true}
 			touchZoomRotate={false}
+			dragPan={true}
 		>
 			{Array.isArray(children) ? children.filter(Boolean) : children}
 		</MapLibre>
