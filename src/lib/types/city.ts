@@ -3,13 +3,13 @@ import { z } from "zod"
 
 export const ApiSimpleCitySchema = z.object({
 	code: z.string(),
-	population: z.number().optional()
+	nom: z.string(),
+	population: z.number().optional(),
+	centre: GeoJsonPointSchema
 })
 export type ApiSimpleCity = z.infer<typeof ApiSimpleCitySchema>
 
 export const ApiCitySchema = ApiSimpleCitySchema.extend({
-	nom: z.string(),
-	centre: GeoJsonPointSchema,
 	contour: z.union([GeoJsonPolygonSchema, GeoJsonMultiPolygonSchema])
 })
 export type ApiCity = z.infer<typeof ApiCitySchema>
@@ -17,13 +17,13 @@ export type ApiCity = z.infer<typeof ApiCitySchema>
 
 export const SimpleCitySchema = z.object({
 	id: z.string(),
-	population: z.number()
+	name: z.string(),
+	population: z.number(),
+	center: GeoJsonPointSchema
 })
 export type SimpleCity = z.infer<typeof SimpleCitySchema>
 
 export const CitySchema = SimpleCitySchema.extend({
-	name: z.string(),
-	center: GeoJsonPointSchema,
 	bounds: z.union([GeoJsonPolygonSchema, GeoJsonMultiPolygonSchema])
 })
 export type City = z.infer<typeof CitySchema>

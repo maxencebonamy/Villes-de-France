@@ -4,4 +4,5 @@ import type { GameColor } from "@/lib/utils/style"
 export type MapMarkerProps = {
 	point: GeoJsonPoint
 	color: GameColor
+	onClick?: () => void
 }

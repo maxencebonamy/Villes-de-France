@@ -7,7 +7,7 @@ export const getAllCities = async(): Promise<SimpleCity[]> => {
 	const response = await queryAndValidate({
 		route: "communes",
 		params: {
-			fields: "code,population",
+			fields: "code,nom,population,centre",
 			zone: "metro"
 		},
 		responseSchema: z.array(ApiSimpleCitySchema)
@@ -19,7 +19,9 @@ export const getAllCities = async(): Promise<SimpleCity[]> => {
 
 	return response.data.map(city => ({
 		id: city.code,
-		population: city.population ?? 0
+		name: city.nom,
+		population: city.population ?? 0,
+		center: city.centre
 	}))
 }
 
